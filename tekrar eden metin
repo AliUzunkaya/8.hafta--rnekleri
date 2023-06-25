@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+
+void BaslayanKelimeleriBul(const char* metin, const char* baslangic) {
+    int metinUzunluk = strlen(metin);
+    int baslangicUzunluk = strlen(baslangic);
+
+    printf("Baslayan kelimeler: ");
+    
+    // Metin üzerinde gezinme
+    for (int i = 0; i < metinUzunluk; i++) {
+        // Boşluk karakteri kontrolü
+        if (i == 0 || metin[i - 1] == ' ') {
+            // Baslangic kelimesiyle karsilastirma
+            if (strncmp(&metin[i], baslangic, baslangicUzunluk) == 0) {
+                // Kelimeyi ekrana yazdirma
+                int j = i;
+                while (j < metinUzunluk && metin[j] != ' ') {
+                    printf("%c", metin[j]);
+                    j++;
+                }
+                printf(" ");
+            }
+        }
+    }
+
+    printf("\n");
+}
+
+int main() {
+    const char* metin = "apple, application, banana, art, ball, cat";
+    const char* baslangic = "app";
+
+    BaslayanKelimeleriBul(metin, baslangic);
+
+    return 0;
+}
